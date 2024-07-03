@@ -7,7 +7,7 @@ import loginimage from '@/public/Images/login/Group267.png'
 import logo from '@/public/Images/login/logo.png'
 import Image from 'next/image'
 import Link from 'next/link'
-export default function login(){
+export default function Login(){
 return(
     <>
     <div className=' grid sm:grid-cols-1 lg:grid-cols-3' style={{overflow:'hidden'}} >
