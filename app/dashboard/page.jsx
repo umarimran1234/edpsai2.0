@@ -16,7 +16,7 @@ export default function dashboard() {
             </div>
             
             
-     <div className="min-h-screen  py-8">
+     <div className="  py-8">
       <div className="mb-5">
 
       <h5 style={{fontWeight:'bold'}} >Recent Project</h5>
