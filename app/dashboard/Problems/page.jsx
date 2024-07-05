@@ -8,7 +8,7 @@ import { PlusIcon } from "@radix-ui/react-icons"
 export default function problempage() {
     return(
         
-            <div className="marl container px-20 lg:col-span-2 col-span-3">
+            <div className="marl  lg:col-span-2 col-span-3">
             <BreadcrumbDemo hreffirst='/' hrefthird='#' hrefsecond='/dashboard' condition={true} firstpath='Company' secondpath='Deshboard' thirdpath='Problems'  />
             <div className="mt-12">
 
@@ -16,7 +16,7 @@ export default function problempage() {
             </div>
             
             
-     <div className="min-h-screen  py-8">
+     <div className="  py-8">
       <div className="mb-5">
 
       <h5 style={{fontWeight:'bold'}} > Projects</h5>
