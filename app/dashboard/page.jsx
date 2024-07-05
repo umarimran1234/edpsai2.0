@@ -8,7 +8,7 @@ import coffie from "../../public/Images/dashboard/Rectangle 33.png"
 export default function dashboard() {
     return(
         
-            <div className=" lg:col-span-2 col-span-3">
+            <div  className="marl lg:col-span-2 col-span-3">
             <BreadcrumbDemo firstpath='company' hreffirst='/' secondpath='EDPS Dashboard' hrefsecond='#' condition={false}  />
             <div className="mt-12">
 
