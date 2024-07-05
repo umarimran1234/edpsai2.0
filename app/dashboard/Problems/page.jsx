@@ -1,15 +1,15 @@
 "use client"
 // import BentoGridDemo  from "@/components/Bagnatogriddemo"
-import { BreadcrumbDemo } from "../../components/BreadCrums"
-import Card from "../../components/Gridcard"
-import { Input } from "../../components/ui/input"
-import coffie from "../../public/Images/dashboard/Rectangle 33.png" 
+import { BreadcrumbDemo } from "../../../components/BreadCrums"
+import Card from "../../../components/Gridcard"
+import { Input } from "../../../components/ui/input"
+import coffie from "../../../public/Images/dashboard/Rectangle 33.png" 
 
-export default function dashboard() {
+export default function problempage() {
     return(
         
             <div className="container px-20 lg:col-span-2 col-span-3">
-            <BreadcrumbDemo firstpath='company' hreffirst='/' secondpath='EDPS Dashboard' hrefsecond='#' condition={false}  />
+            <BreadcrumbDemo hreffirst='/' hrefthird='#' hrefsecond='/dashboard' condition={true} firstpath='Company' secondpath='Deshboard' thirdpath='Problems'  />
             <div className="mt-12">
 
         <Input className='borderdark' disable value='Welcome back  Bassie Copper'/>       

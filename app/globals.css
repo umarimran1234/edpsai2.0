@@ -31,6 +31,10 @@ color: #FFFFFF;
 Padding: 10px 50px 10px 50px;
 border-radius: 30px;
 }
+.borderdark{
+  border-radius: 2rem !important ; 
+
+}
 .border{
   border-radius: 20px !important;
   border: 1px #888888 solid;
@@ -63,6 +67,16 @@ h1,h2,h3,h4,h5,h6{
   color: white;
   font-size: 1.8rem;
   font-style:italic;
+}
+.marl{
+  margin-left:4rem ;
+
+}
+@media only screen and  (max-width:764px)  {
+ .marl{
+  margin-left:0rem ;
+
+} 
 }
 @layer utilities {
   .text-balance {

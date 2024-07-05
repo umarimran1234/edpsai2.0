@@ -1,10 +1,5 @@
-import { CardWithForm } from '@/components/Card'
-import { Button } from '@/components/ui/button'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import { Input } from '@/components/ui/input'
-import { Label } from '@/components/ui/label'
-import loginimage from '@/public/Images/login/Group267.png'
-import logo from '@/public/Images/login/logo.png'
+"use client"
+import logo from '../../public/Images/login/logo.png'
 import Image from 'next/image'
 import Link from 'next/link'
 export default function Login(){
