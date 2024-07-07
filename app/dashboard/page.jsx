@@ -12,7 +12,7 @@ export default function dashboard() {
             <BreadcrumbDemo firstpath='company' hreffirst='/' secondpath='EDPS Dashboard' hrefsecond='#' condition={false}  />
             <div className="mt-12">
 
-        <Input className='borderdark' disable value='Welcome back  Bassie Copper'/>       
+        <Input className='borderdark text-white' disable value='Welcome back   Bassie Copper'/>       
             </div>
             
             

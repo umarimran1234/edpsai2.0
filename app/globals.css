@@ -35,13 +35,58 @@ border-radius: 30px;
   border-radius: 2rem !important ; 
 
 }
-.border{
+.borderset{
   border-radius: 20px !important;
   border: 1px #888888 solid;
   padding: 20px;
   color: rgb(202, 201, 201);
   background-color: transparent;
   height: 3.7rem;
+}
+.profassionalinput{
+  background-color: transparent;
+border: white 1px  solid;
+width: 17rem;
+height: 3rem;
+  outline: none;
+  color: #FFFFFF;
+}
+.fontsize{
+ font-size: 3rem;
+}
+.btnhandle{
+  background-color: transparent ;
+  border: 1px solid white !important;
+}
+/* components/StepIndicator.css */
+.step-button {
+  position: relative;
+}
+
+.step-button::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 2px;
+  height: 20px;
+  background-color: black;
+  transform: translate(-50%, -50%);
+}
+.changeinput{
+  background: transparent;
+  border: solid 1px #6b6565;
+  color: white;
+  outline: none;
+}
+.step-button.bg-gray-500::before {
+  background-color: white;
+}
+
+#professional-textarea{
+ background-color:  #353434;
+border: white 1px  solid;
+outline: navy;
 }
 .border::placeholder{
   color: rgb(216, 216, 216) !important; 
@@ -60,7 +105,7 @@ h3{
   font-size: 2.7rem;
 }
 h1,h2,h3,h4,h5,h6{
-  color: white;
+  color: #888888;
 }
 .underspan{
   font-weight: 100;
@@ -77,6 +122,9 @@ h1,h2,h3,h4,h5,h6{
   margin-left:0rem ;
 
 } 
+.mtsm{
+margin-top: 6rem;
+}
 }
 @layer utilities {
   .text-balance {

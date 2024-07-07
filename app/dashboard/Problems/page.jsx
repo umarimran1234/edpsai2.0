@@ -5,6 +5,7 @@ import Card from "../../../components/Gridcard"
 import { Input } from "../../../components/ui/input"
 import coffie from "../../../public/Images/dashboard/Rectangle 33.png" 
 import { PlusIcon } from "@radix-ui/react-icons"
+import Modal from '../(components)/Modal'
 export default function problempage() {
     return(
         
@@ -33,7 +34,8 @@ export default function problempage() {
           <Card imageSrc={coffie} heading="Coffiee machine leaking" text="This is the fourth card." />
         </div>
       </div>
-       <button style={{background:'#888888',padding:'1rem',  borderRadius:"1rem" } } className="mt-6"> <PlusIcon width={50} fontSize={100} /> </button>
+    
+      <Modal/>
       </div>
     </div>
             
