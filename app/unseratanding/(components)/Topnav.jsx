@@ -6,11 +6,11 @@ export default function Topnav({ currentStep }) {
 
   return (
     <div style={{width:'100%'}} className="flex fixed  flex-col sm:flex-row justify-between items-center py-4 px-6 bg-black">
-      <div className="flex ml-10 items-center space-x-2 relative mb-4 sm:mb-0">
+      <div className="flex ml-12 items-center space-x-2 relative mb-4 sm:mb-0">
         {Array.from({ length: totalSteps }, (_, index) => (
           <React.Fragment key={index}>
             <div
-              className={`w-6 h-6 flex items-center justify-center rounded-full text-sm z-10 ${
+              className={`w-8 h-8 flex items-center justify-center rounded-full text-sm z-10 ${
                 index === currentStep - 1
                   ? 'bg-gray-500 text-white'
                   : 'bg-white text-black'

@@ -1,7 +1,8 @@
 import React from 'react';
-
+import  ButtonSection from "../(components)/Bottom"
 const ActionPlanningTable = () => {
     return (
+        <>
         <div className="mtsm text-white min-h-screen flex items-center justify-center p-6">
             <div className="w-full max-w-4xl mx-auto">
                 <h1 className="text-center text-2xl font-semibold mb-6">Action Planning</h1>
@@ -65,6 +66,9 @@ const ActionPlanningTable = () => {
                 </div>
             </div>
         </div>
+<ButtonSection back={"whyanalysis"}  linking={"Actionplainig2"} />
+
+                </>
     );
 };
 

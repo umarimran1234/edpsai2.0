@@ -4,7 +4,7 @@ import Image from 'next/image';
 import { CheckIcon } from '@heroicons/react/24/outline';
 import { XCircleIcon } from '@heroicons/react/24/outline';
 import logoopenai from '../../../public/Images/Problems/openailogo.png'
-
+import ButtonSection from '../(components)/Bottom'
 function WhyAnalysis() {
   const categories = [
     { name: "Root Cause", causes: ["Cause 1"] },
@@ -74,6 +74,8 @@ function WhyAnalysis() {
           </div>
         </div>
       </div>
+<ButtonSection back={"fishboneAnlysis"}  linking={"Actionplain"} />
+    
     </>
   )
 }

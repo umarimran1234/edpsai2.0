@@ -3,6 +3,7 @@ import Image from "next/image";
 import {CheckIcon} from '@heroicons/react/24/outline';
 import { XCircleIcon } from '@heroicons/react/24/outline';
 import logoopenai from '../../../public/Images/Problems/openailogo.png'
+import ButtonSection from "../../unseratanding/(components)/Bottom"
 const FishboneAnalysis = () => {
   const categories = [
     { name: "Man", causes: ["Cause 1", "Cause 2" ,"Cause 3"] },
@@ -14,6 +15,7 @@ const FishboneAnalysis = () => {
   ];
 
   return (
+ <>
 
     <div className="min-h-screen mtsm flex flex-col items-center justify-center bg-black text-white p-4 ">
       <h1 className="text-3xl mb-8">Fishbone Analysis</h1>
@@ -61,6 +63,10 @@ const FishboneAnalysis = () => {
         </div>
       </div>
     </div>
+<ButtonSection back={"/unseratanding"}  linking={"whyanalysis"} />
+    
+ </>
+  
   );
 };
 

@@ -20,7 +20,7 @@ export default function Problelayout({ children }) {
 
      </div>
        </main>
-  <ButtonSection/>
+
   </div>
  </>
 

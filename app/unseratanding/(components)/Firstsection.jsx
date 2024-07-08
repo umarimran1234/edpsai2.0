@@ -2,10 +2,13 @@
 import React from 'react';
 import { PlusIcon } from '@radix-ui/react-icons';
 import  MappingSection from './Maping'
+import ButtonSection from './Bottom'
 const FirstSection = () => {
   return (
+    <>
+
     <div className=" mtsm ml-4 mt-6 text-white min-h-screen p-4 sm:ml-12 sm:mt-20 sm:p-6 md:ml-20 md:mt-20 md:p-8">
-      <div className="container mx-auto">
+      <div className=" mx-auto">
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-2">
           {/* Understanding Problem Section */}
           <div>
@@ -70,6 +73,9 @@ const FirstSection = () => {
        <MappingSection/>
       </div>
     </div>
+    <ButtonSection  linking={"unseratanding/fishboneAnlysis"}  back={"/dashboard"}/>
+    </>
+
   );
 };
 
