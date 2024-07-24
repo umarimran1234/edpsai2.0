@@ -4,10 +4,10 @@ import { useState } from 'react';
  
 import { ClockIcon, GlobeIcon , LightningBoltIcon } from '@radix-ui/react-icons';
 // import { LightBulbIcon } from '@heroicons/react/24/outline';
-import Link from 'next/link';
-import { Bars3Icon } from '@heroicons/react/24/outline';
+import Link from 'next/link'
+import { Bars3Icon, CubeTransparentIcon } from '@heroicons/react/24/outline'; 
 import { IconSettings } from '@tabler/icons-react';
-import {CubeTransparentIcon} from '@heroicons/react/24/outline';
+
 import {BellIcon} from '@radix-ui/react-icons';
 import Image from "next/image"
 import logo from "../../../public/Images/Problems/edpsailogo.png"

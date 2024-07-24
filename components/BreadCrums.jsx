@@ -19,7 +19,7 @@ export function BreadcrumbDemo({firstpath , secondpath , thirdpath ,  condition,
     <Breadcrumb >
       <BreadcrumbList>
         <BreadcrumbItem>
-          <BreadcrumbLink href={hreffirst} className="text-white" > {firstpath}</BreadcrumbLink>
+          <BreadcrumbLink href={hreffirst} > {firstpath}</BreadcrumbLink>
         </BreadcrumbItem>
         {/* <BreadcrumbSeparator /> */}
         {/* <BreadcrumbItem>

@@ -1,7 +1,7 @@
 import { Description, Field, Label, Textarea } from '@headlessui/react'
 import clsx from 'clsx'
 
-export default function Taxtareae() {
+export default function Taxtarea() {
   return (
     <div className="w-full max-w-md px-4">
       <Field>

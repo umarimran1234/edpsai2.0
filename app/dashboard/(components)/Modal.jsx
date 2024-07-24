@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
 import { Input } from '../../../components/ui/input';
-import { Taxtareae } from '../../../components/ui/Textareaheadless';
-import { CameraIcon } from '@radix-ui/react-icons';
 import { PlusIcon } from "@radix-ui/react-icons"
 
 import { XMarkIcon } from '@heroicons/react/24/outline';
+import axios from 'axios';
 const Modal = () => {
 
   const [isOpen, setIsOpen] = useState(false);
@@ -13,6 +12,7 @@ const Modal = () => {
     name: '',
     email: '',
     description: '',
+    contributors:''
   });
 
   const openModal = () => setIsOpen(true);
@@ -24,17 +24,36 @@ const Modal = () => {
     }
   };
 
-  // const handleChange = (e) => {
-  //   const { name, value } = e.target;
-  //   setFormData({
-  //     ...formData,
-  //     [name]: value,
-  //   });
-  // };
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+  };
 
-  const handleSubmit = (e) => {
+  const   handleSubmit   =  async  (e) => {
     e.preventDefault();
-    // Handle form submission logic here
+
+   const userid = localStorage.getItem('_id');
+   const contributorinarray = formData.contributors.split(',').map(email => email.trim())
+   try{
+    const respone = await axios.post('/api/addCard',{
+      userId:userid,
+      ProjectName:formData.name,
+      DescribProblem:formData.description,
+      imgUrl:image,
+      Contributers:contributorinarray
+  
+    }
+
+  )
+   const projectId = respone.data.savData._id;
+   
+  console.log(projectId); 
+  } catch(err){
+      console.log(err);
+   }
     console.log('Form submitted:', formData, image);
     closeModal();
   };
@@ -43,7 +62,7 @@ const Modal = () => {
     <div>
 
 
-       <button        onClick={openModal}   style={{background:'#888888',padding:'1rem',  borderRadius:"1rem" } } className="mt-6"> <PlusIcon width={50} fontSize={100} /> </button>
+       <button  onClick={openModal}   style={{background:'#888888',padding:'1rem',  borderRadius:"1rem" } } className="mt-6"> <PlusIcon width={50} fontSize={100} /> </button>
 
       {isOpen && (
         <div className="fixed inset-0 flex items-center justify-center z-50">
@@ -97,31 +116,33 @@ const Modal = () => {
                 <label className="block text-white font-bold mr-6 text-sm font-bold ">
                   ProjectName
                 </label>
-                <Input 
+                <Input
                   type="text"
                   name="name"
                   placeholder='Enter project name'
                   className="profassionalinput w-100"
-                  required
-                />
+                  onChange={handleChange} 
+                 required
+                 
+                 />
               </div>
               
                <div class="w-full  ">
     <label for="professional-textarea" class="block text-sm font-medium text-white font-bold mb-2">Description</label>
-    <textarea placeholder='Describe your problem' style={{color:'white',}} id="professional-textarea" rows="6" class=" outline-none w-full p-3 border  bg-transparent rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 resize-none"></textarea>
+    <textarea name="description" onChange={handleChange} placeholder='Describe your problem' style={{color:'white',}} id="professional-textarea" rows="6" class=" outline-none w-full p-3 border  bg-transparent rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 resize-none"></textarea>
   </div>
 
               <div className="mt-3 flex justify-center">
                 <label className="block text-white font-bold mr-6 text-sm font-bold ">
                  Contributers
                 </label>
-                <Input  placeholder='add Email'
+                <Input  
+                  placeholder='add Email'
                   type="text"
-                  name="name"
-                  
- 
+                  name="contributors" 
                   className="profassionalinput w-100"
                   required
+                  onChange={handleChange}
                 />
               </div>
               

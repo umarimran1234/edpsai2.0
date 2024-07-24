@@ -1,13 +1,12 @@
 "use client"
 import React from 'react'
 import { useState } from 'react';
- 
 import { ClockIcon, GlobeIcon , LightningBoltIcon } from '@radix-ui/react-icons';
+import { Bars4Icon , CubeTransparentIcon} from '@heroicons/react/24/outline';
 // import { LightBulbIcon } from '@heroicons/react/24/outline';
 import Link from 'next/link';
-import { Bars3Icon } from '@heroicons/react/24/outline';
-import {CubeTransparentIcon} from '@heroicons/react/24/outline';
-function DashboardSideBar() {
+// import {} from '@heroicons/react/24/outline';
+ export  default  function DashboardSideBar() {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleSidebar = () => {
@@ -15,20 +14,20 @@ function DashboardSideBar() {
   };
 
   return (
-    <div className="flex " >
+    <div className="flex" >
       {/* Sidebar */}
       <div className={`fixed inset-y-0 left-0 z-30  transform  p-2 transition-transform duration-300 ease-in-out ${isOpen ? 'translate-x-0' : '-translate-x-full'} md:translate-x-0`}>
         <div className="flex items-center mt-3 px-5 justify-between mb-6">
             
           <button onClick={toggleSidebar} className=" text-white">
-            <Bars3Icon color='white' width={20} />
+            <Bars4Icon id='baricone'  width={20} />
 
 
           </button>
         </div>
  <nav defaultActiveKey="/home" className="flex-column bg-dark text-white" style={{ width: '60px', height: '100vh'  }}>
       <ul  style={ { padding:'1.4rem',  borderRadius:'1rem' ,   background:'#3A3A3C'}} >
-   <li className='mb-4' >
+   <li className='mb-4'>
 
       <Link href="/link-2" className="text-center text-white">
         <svg style={{color:'#898181'}} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" className="size-4">
@@ -41,13 +40,13 @@ function DashboardSideBar() {
 <li className='mb-4'>
 
       <Link href="/home" className="text-center text-white">
-        <ClockIcon color='#898181' />
+        {/* <ClockIcon color='#898181' /> */}
       </Link>
 </li>
     
    <li className='mb-4' >
   <Link href="/link-1" className="text-center text-white">
-        <GlobeIcon color='#898181' />
+        {/* <GlobeIcon color='#898181' /> */}
       </Link>
    </li> 
    <li className='mb-4' >
@@ -82,4 +81,4 @@ function DashboardSideBar() {
   
 }
 
-export default DashboardSideBar
+ 
