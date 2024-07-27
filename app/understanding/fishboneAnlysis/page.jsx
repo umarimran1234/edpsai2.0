@@ -4,7 +4,9 @@ import {CheckIcon} from '@heroicons/react/24/outline';
 import { XCircleIcon } from '@heroicons/react/24/outline';
 import logoopenai from '../../../public/Images/Problems/openailogo.png'
 import ButtonSection from "../../understanding/(components)/Bottom"
+
 const FishboneAnalysis = () => {
+
   const categories = [
     { name: "Man", causes: ["Cause 1", "Cause 2" ,"Cause 3"] },
     { name: "Material", causes: ["Cause 1", "Cause 2" ,"Cause 3"] },

@@ -1,18 +1,19 @@
 import React, { useState } from 'react';
 import { Input } from '../../../components/ui/input';
 import { PlusIcon } from "@radix-ui/react-icons"
-
+import { useRouter } from 'next/navigation';
 import { XMarkIcon } from '@heroicons/react/24/outline';
 import axios from 'axios';
-const Modal = () => {
 
+const Modal = () => {
+  const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
   const [image, setImage] = useState(null);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     description: '',
-    contributors:''
+    Contributers: ''
   });
 
   const openModal = () => setIsOpen(true);
@@ -32,59 +33,64 @@ const Modal = () => {
     });
   };
 
-  const   handleSubmit   =  async  (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    const userid = localStorage.getItem('_id');
+    const contributorinarray = formData.Contributers.split(',').map(email => email.trim());
 
-   const userid = localStorage.getItem('_id');
-   const contributorinarray = formData.contributors.split(',').map(email => email.trim())
-   try{
-    const respone = await axios.post('/api/addCard',{
-      userId:userid,
-      ProjectName:formData.name,
-      DescribProblem:formData.description,
-      imgUrl:image,
-      Contributers:contributorinarray
-  
+    try {
+      const response = await axios.post('/api/addCard', {
+        userId: userid,
+        ProjectName: formData.name,
+        DescribProblem: formData.description,
+        imgUrl: image,
+        Contributers: contributorinarray
+      });
+
+      const projectId = response.data.savData._id;
+      console.log(projectId);
+
+      await axios.post('/api/SaveProgress', {
+        cardId: projectId,
+        currentStep: 0
+      });
+
+     
+      router.push(`/understanding?cardId=${projectId}`);
+
+    } catch (err) {
+      console.log(err);
     }
 
-  )
-   const projectId = respone.data.savData._id;
-   
-  console.log(projectId); 
-  } catch(err){
-      console.log(err);
-   }
-    console.log('Form submitted:', formData, image);
     closeModal();
   };
 
   return (
     <div>
-
-
-       <button  onClick={openModal}   style={{background:'#888888',padding:'1rem',  borderRadius:"1rem" } } className="mt-6"> <PlusIcon width={50} fontSize={100} /> </button>
+      <button onClick={openModal} style={{ background: '#888888', padding: '1rem', borderRadius: "1rem" }} className="mt-6">
+        <PlusIcon width={50} fontSize={100} />
+      </button>
 
       {isOpen && (
         <div className="fixed inset-0 flex items-center justify-center z-50">
           <div className="fixed inset-0 bg-gray-600 bg-opacity-75"></div>
 
-          <div style={{ borderRadius:'2rem' , background:'#3A3A3C', padding:'3rem' , border:'1px solid #888888'}} className="bg-white rounded-lg overflow-hidden shadow-xl transform transition-all max-w-lg w-full p-6 z-50">
- <button style={{position:'absolute'}}
-                  type="button"
-                  className="bg-red-500 text-white font-bold py-2 px-4 rounded"
-                  onClick={closeModal}
-                >
-                  <XMarkIcon width={20} color='white' fontWeight={300}/>
-                </button>
-           <div style={{textAlign:'center'}}>
-            <h2 className="text-2xl font-semibold mb-4">New Problem</h2>
-           </div>
+          <div style={{ borderRadius: '2rem', background: '#3A3A3C', padding: '3rem', border: '1px solid #888888' }} className="bg-white rounded-lg overflow-hidden shadow-xl transform transition-all max-w-lg w-full p-6 z-50">
+            <button style={{ position: 'absolute' }}
+              type="button"
+              className="bg-red-500 text-white font-bold py-2 px-4 rounded"
+              onClick={closeModal}
+            >
+              <XMarkIcon width={20} color='white' fontWeight={300} />
+            </button>
+            <div style={{ textAlign: 'center' }}>
+              <h2 className="text-2xl font-semibold mb-4">New Problem</h2>
+            </div>
             <form onSubmit={handleSubmit}>
               <div className="mb-4">
-                
-                <div style={{background: "#656060" ,  borderRadius:'1rem'}} className="flex items-center overflow-hidden justify-center w-full">
-                  <label style={{ width:'6rem'   , maxHeight:'6rem'}}
-                    className="flex flex-col w-full h-26      group cursor-pointer"
+                <div style={{ background: "#656060", borderRadius: '1rem' }} className="flex items-center overflow-hidden justify-center w-full">
+                  <label style={{ width: '6rem', maxHeight: '6rem' }}
+                    className="flex flex-col w-full h-26 group cursor-pointer"
                   >
                     <div className="flex flex-col items-center justify-center pt-7">
                       {image ? (
@@ -103,7 +109,7 @@ const Modal = () => {
                         {image ? 'Change Image' : ''}
                       </p>
                     </div>
-                    <input 
+                    <input
                       type="file"
                       className="opacity-0"
                       accept="image/*"
@@ -121,39 +127,38 @@ const Modal = () => {
                   name="name"
                   placeholder='Enter project name'
                   className="profassionalinput w-100"
-                  onChange={handleChange} 
-                 required
-                 
-                 />
+                  onChange={handleChange}
+                  required
+                />
               </div>
-              
-               <div class="w-full  ">
-    <label for="professional-textarea" class="block text-sm font-medium text-white font-bold mb-2">Description</label>
-    <textarea name="description" onChange={handleChange} placeholder='Describe your problem' style={{color:'white',}} id="professional-textarea" rows="6" class=" outline-none w-full p-3 border  bg-transparent rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 resize-none"></textarea>
-  </div>
+
+              <div className="w-full">
+                <label htmlFor="professional-textarea" className="block text-sm font-medium text-white font-bold mb-2">Description</label>
+                <textarea name="description" onChange={handleChange} placeholder='Describe your problem' style={{ color: 'white' }} id="professional-textarea" rows="6" className="outline-none w-full p-3 border bg-transparent rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 resize-none"></textarea>
+              </div>
 
               <div className="mt-3 flex justify-center">
                 <label className="block text-white font-bold mr-6 text-sm font-bold ">
-                 Contributers
+                  Contributers
                 </label>
-                <Input  
+                <Input
                   placeholder='add Email'
                   type="text"
-                  name="contributors" 
+                  name="Contributers"
                   className="profassionalinput w-100"
                   required
                   onChange={handleChange}
                 />
               </div>
-              
+
               <div className="mt-3 flex items-center justify-center">
-                <button  
+                <button
                   type="submit"
-                  className="btnhandle  text-white font-bold py-2 px-4 rounded"
+                  className="btnhandle text-white font-bold py-2 px-4 rounded"
                 >
                   Create
                 </button>
-               
+
               </div>
             </form>
           </div>

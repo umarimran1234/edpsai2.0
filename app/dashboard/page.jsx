@@ -1,12 +1,12 @@
-"use client"
-import { BreadcrumbDemo } from "../../components/BreadCrums"
-import Card from "../../components/Gridcard"
-import { Input } from "../../components/ui/input"
-import { useEffect, useState } from "react"
-import { useRouter } from "next/navigation"
-import axios from "axios"
-import Skeleton from "react-loading-skeleton"
-import 'react-loading-skeleton/dist/skeleton.css'
+"use client";
+import { BreadcrumbDemo } from "../../components/BreadCrums";
+import Card from "../../components/Gridcard";
+import { Input } from "../../components/ui/input";
+import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
+import axios from "axios";
+import Skeleton from "react-loading-skeleton";
+import 'react-loading-skeleton/dist/skeleton.css';
 
 export default function Dashboard() {
   const [cards, setCards] = useState([]);
@@ -45,6 +45,25 @@ export default function Dashboard() {
       });
   };
 
+  const handleCardClick = async (cardId) => {
+    try {
+      // Fetch saved progress for the card
+      const response = await axios.get(`/api/Fetchprogress?cardId=${cardId}`);
+      const { crunnentStep } = response.data;
+
+      // Redirect based on saved progress
+      if (crunnentStep) {
+        router.push(`/${cardId}/${crunnentStep}`);
+      } else {
+        router.push(`/understanding/${cardId}`);
+      }
+    } catch (error) {
+      console.error("Error fetching progress:", error);
+      // Handle errors (e.g., show a message to the user)
+      router.push(`/projects/${cardId}/firstSection`);
+    }
+  };
+
   return (
     <div className="marl lg:col-span-2 col-span-3">
       <BreadcrumbDemo firstpath='company' hreffirst='/' secondpath='EDPS Dashboard' hrefsecond='#' condition={false} />
@@ -70,7 +89,13 @@ export default function Dashboard() {
                 ))
               ) : (
                 cards.map((card) => (
-                  <Card key={card._id} imageSrc={card.imgUrl} heading={card.ProjectName} text={card.DescribProblem} />
+                  <Card
+                    key={card._id}
+                    imageSrc={card.imgUrl}
+                    heading={card.ProjectName}
+                    text={card.DescribProblem}
+                    onClick={() => handleCardClick(card._id)} 
+                  />
                 ))
               )}
             </div>
@@ -78,5 +103,5 @@ export default function Dashboard() {
         </div>
       </div>
     </div>
-  )
+  );
 }

@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+import mongoose, { Schema } from "mongoose";
 
 const CardSchema = new mongoose.Schema({
     userId:{type: mongoose.Schema.Types.ObjectId , required:true},
@@ -12,8 +12,12 @@ const CardSchema = new mongoose.Schema({
         token:{type:String},
         tokenExpireAT:{type:Date},
     }
-]
-
+] ,
+ crunnentStep:{type:Number,default:0},
+ steps:{
+    type:Map,
+    of:Schema.Types.Mixed
+ }
 }, 
 {timestamps:true})
 

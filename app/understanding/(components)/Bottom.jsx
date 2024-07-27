@@ -2,7 +2,7 @@
 import Link from 'next/link';
 import React from 'react';
 
-const ButtonSection = ({linking  , back } , ) => {
+const ButtonSection = ({  hanldenext  , back } , ) => {
   return (
     <div className="flex justify-end items-center space-x-4 p-4 sm:p-6 md:p-8">
       {/* Back Button */}
@@ -16,17 +16,17 @@ const ButtonSection = ({linking  , back } , ) => {
       </button>
 </Link>
       {/* Redo Button */}
-      <button  className="px-4 py-2 border border-gray-500 text-gray-500 rounded-full">
+      <button   className="px-4 py-2 border border-gray-500 text-gray-500 rounded-full">
         Redo
       </button>
 
       {/* Next Button */}
-      <Link href={linking}>
+      
 
-      <button className="px-6 py-2 bg-white text-black rounded-full">
+      <button onClick={hanldenext} className="px-6 py-2 bg-white text-black rounded-full">
         Next
       </button>
-      </Link>
+      
 
     </div>
   );

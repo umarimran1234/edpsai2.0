@@ -1,58 +1,82 @@
-// components/FlowChart.js
-'use client'
-import { useState } from 'react';
-import  { ReactFlow, Background, Controls, MiniMap, useNodesState, useEdgesState, addEdge } from '@xyflow/react';
-import '@xyflow/react/dist/style.css'
-import { useEffect } from 'react';
-import Toolbar from '../(components)/Toolbar'
-import React from 'react';
-const initialNodes = [
-  
-];
-const initialEdges = [];
+// components/Flowchart.js
+'use client';
+import React, { useState, useEffect } from 'react';
+import { ReactFlowProvider, ReactFlow, addEdge, MiniMap, Controls, Background, Handle, useNodesState, useEdgesState } from '@xyflow/react';
+import Toolbar from '../(components)/Toolbar';
+import '@xyflow/react/dist/style.css';
 
-const FlowChart = ({command}) => {
+const Flowchart = () => {
   const [nodes, setNodes, onNodesChange] = useNodesState([]);
   const [edges, setEdges, onEdgesChange] = useEdgesState([]);
-  const [nodeName, setNodeName] = useState('');
+  const [command, setCommand] = useState(null);
+ const [color , setNodeColor] = useState('#fff')
+  const [nodeLabel, setNodeLabel] = useState('');
 
-  const addNode = () => {
-    const newNode = {
-      id: (nodes.length + 1).toString(),
-      data: { label: `Node ${nodes.length + 1}` },
-      position: { x: Math.random() * 250, y: Math.random() * 250 },
-    };
-    setNodes((nds) => nds.concat(newNode));
+  const handleAddNode = () => {
+    setNodes((nds) => [
+      ...nds,
+      {
+        id: `node${nds.length + 1}`,
+        type: 'custom',
+        data: { label: nodeLabel || `Node ${nds.length + 1} ` , color:color },
+        position: { x: Math.random() * 400, y: Math.random() * 400 },
+      },
+    ]);
   };
 
-  const removeNode = () => {
-    setNodes((nds) => nds.slice(0, -1));
+  const handleRemoveNode = () => {
+    setNodes((nds) => {
+      if (nds.length > 0) {
+        return nds.slice(0, -1); // Remove the last node
+      }
+      return nds;
+    });
   };
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (command === 'addNode') {
-      addNode();
+      handleAddNode();
+      setCommand(null); // Reset the command to allow adding more nodes
     } else if (command === 'removeNode') {
-      removeNode();
+      handleRemoveNode();
+      setCommand(null); // Reset the command to allow removing more nodes
     }
   }, [command]);
 
-  return (
-    <div className="h-full">
-      <ReactFlow 
-        nodes={nodes} 
-        edges={edges} 
-        onNodesChange={onNodesChange} 
-        onEdgesChange={onEdgesChange} 
-        onConnect={(params) => setEdges((eds) => addEdge(params, eds))}
-      >
-        <Background />
-        <Controls />
-        <MiniMap />
-      </ReactFlow>
-      <Toolbar/>
+  const onConnect = (params) => setEdges((eds) => addEdge(params, eds));
+
+  const CustomNode = ({ data }) => (
+    <div style={{ padding: 10, border: '1px solid black', borderRadius: 5, background: '#888888',  }}>
+      <Handle type="target" position="top" />
+      <div>{data.label}</div>
+      <Handle type="source" position="bottom" />
     </div>
+  );
+
+  const nodeTypes = {
+    custom: CustomNode,
+  };
+
+  return (
+    <ReactFlowProvider>
+      <div style={{ height: '100vh', width: '95vw' }}>
+        <ReactFlow
+          nodes={nodes}
+          edges={edges}
+          onNodesChange={onNodesChange}
+          onEdgesChange={onEdgesChange}
+          onConnect={onConnect}
+          nodeTypes={nodeTypes}
+          style={{ width: '100%', height: '100%' }}
+        >
+
+
+          <Background />
+        </ReactFlow>
+        <Toolbar setCommand={setCommand}  setNodeLabel={setNodeLabel}   />
+      </div>
+    </ReactFlowProvider>
   );
 };
 
-export default FlowChart;
+export default Flowchart;
