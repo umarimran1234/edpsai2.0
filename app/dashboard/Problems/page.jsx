@@ -1,10 +1,7 @@
 "use client"
 // import BentoGridDemo  from "@/components/Bagnatogriddemo"
 import { BreadcrumbDemo } from "../../../components/BreadCrums"
-import Card from "../../../components/Gridcard"
-import { Input } from "../../../components/ui/input"
-import coffie from "../../../public/Images/dashboard/Rectangle 33.png" 
-import { PlusIcon } from "@radix-ui/react-icons"
+ 
 import Modal from '../(components)/Modal'
 export default function problempage() {
     return(
@@ -27,12 +24,7 @@ export default function problempage() {
       
       <div className="grid grid-cols-1 md:grid-cols-1 w-50">
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <Card  imageSrc={coffie}  heading="Circuit Burnout " text="This is the first card." />
-          <Card imageSrc={coffie} heading="Motor Squealing" text="This is the second card." />
-          <Card imageSrc={coffie} heading="The Shredding" text="This is the third card." />
-          <Card imageSrc={coffie} heading="Coffiee machine leaking" text="This is the fourth card." />
-        </div>
+
       </div>
     
       <Modal/>

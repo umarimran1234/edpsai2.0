@@ -5,6 +5,7 @@ import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 import { useRouter } from 'next/navigation';
 import ThemeSwitcher from '../../../components/Themeswitcher';
 import axios from 'axios';
+import Link from 'next/link';
 import Skeleton from 'react-loading-skeleton';
 
 const navigation = [
@@ -12,6 +13,8 @@ const navigation = [
   { name: 'Problems', href: '/dashboard/Problems', current: false },
   { name: 'Understanding', href: '/understanding', current: false },
 ];
+
+
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ');
@@ -65,7 +68,7 @@ function DashboardTopNav() {
                       key={item.name}
                       href={item.href}
                       className={classNames(
-                        item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
+                        item.current ? ' editcrunnt bg-gray-900  text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
                         'rounded-md px-3 py-2 text-sm font-medium'
                       )}
                     >
@@ -112,9 +115,9 @@ function DashboardTopNav() {
                     </Menu>
                   </div>
                 ) : (
-                  <a href="/login" className="text-white">
+                  <Link  href="/login" className="text-white">
                     Log in
-                  </a>
+                  </Link>
                 )}
                 <ThemeSwitcher />
               </div>

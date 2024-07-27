@@ -29,7 +29,7 @@ body span{
 } 
 body a {
   /* background-color: var(--background) !important;  */
-  color: var(--text-color) !important;
+  
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 .welcome {
@@ -37,7 +37,11 @@ body a {
 }
 #baricone {
     color: var(--text-color) !important;
-
+    background-color: var(--background ) !important;
+}
+.editcrunnt {
+    color: var(--text-color) !important;
+  
 }
 @media (prefers-color-scheme: dark) {
   :root {

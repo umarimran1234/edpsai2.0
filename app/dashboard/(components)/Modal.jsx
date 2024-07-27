@@ -52,7 +52,7 @@ const Modal = () => {
 
       await axios.post('/api/SaveProgress', {
         cardId: projectId,
-        currentStep: 0
+        currentStep: 0,
       });
 
      
