@@ -10,7 +10,7 @@ import axios from 'axios';
 const FirstSection = () => {
   const router = useRouter();
   const serachprams = useSearchParams()
-  const [leader, setLeader] = useState('Ash');
+  const [leader, setLeader] = useState('');
   const [names, setNames] = useState('');
   const [description, setDescription] = useState('');
   const [cardId, setCardId] = useState(null);
@@ -35,8 +35,18 @@ const FirstSection = () => {
     }
   };
 
+const getResponseFromgpt = async (description) =>{
+  try{
+    const response = await axios.post('/openai' , {description});
+  } catch(error){
+ console.error('Error fetching data from OpenAI:', error);
+  }
+}
+
   const handleSave = async () => {
     try {
+
+      await getResponseFromgpt(description)
       await axios.post('/api/SaveProgress', {
         cardId,
         currentStep: 1,
@@ -67,7 +77,7 @@ const FirstSection = () => {
               />
             </div>
             <div className="mb-4 flex flex-col sm:flex-row justify-between">
-              <label className="block mb-2 sm:mb-0 font-bold mr-0 sm:mr-12">Leader</label>
+              <label className="block mb-2 sm:mb-0 font-bold mr-0 sm:mr-12">Name</label>
               <input
                 type="text"
                 className="w-full p-2 changeinput bg-gray-800 text-white rounded"
