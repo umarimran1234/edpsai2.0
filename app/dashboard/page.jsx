@@ -34,24 +34,24 @@ export default function Dashboard() {
   }, [router]);
 
   const fetching = (userId) => {
-    axios.get(`/api/getCard?userId=${userId}`)
+    axios.get(`/api/getCard?userId=${userId}`) 
       .then((response) => {
         setCards(response.data);
-        setLoading(false); // Set loading to false once data is fetched
+        setLoading(false); 
       })
       .catch((err) => {
         console.log(err);
-        setLoading(false); // Set loading to false in case of error
+        setLoading(false); 
       });
   };
 
   const handleCardClick = async (cardId) => {
     try {
-      // Fetch saved progress for the card
+      
       const response = await axios.get(`/api/Fetchprogress?cardId=${cardId}`);
       const { crunnentStep } = response.data;
 
-      // Redirect based on saved progress
+      
       if (crunnentStep) {
         router.push(`/${cardId}/${crunnentStep}`);
       } else {
@@ -59,16 +59,16 @@ export default function Dashboard() {
       }
     } catch (error) {
       console.error("Error fetching progress:", error);
-      // Handle errors (e.g., show a message to the user)
-      router.push(`/projects/${cardId}/firstSection`);
+      
+      router.push(`/understanding/${cardId}`);
     }
   };
 
   return (
     <div className="marl lg:col-span-2 col-span-3">
       <BreadcrumbDemo firstpath='company' hreffirst='/' secondpath='EDPS Dashboard' hrefsecond='#' condition={false} />
-      <div className="mt-12">
-        <Input className="text-white welcome" disabled value={`Welcome back ${user ? user.name : ""}`} />
+      <div className="mt-12 ">
+        <Input className="text-white py-6 text-4lg welcome" disabled value={`Welcome back   ${user ? user.name : ""}`} />
       </div>
 
       <div className="py-8">

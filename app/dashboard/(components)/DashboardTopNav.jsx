@@ -7,7 +7,8 @@ import ThemeSwitcher from '../../../components/Themeswitcher';
 import axios from 'axios';
 import Link from 'next/link';
 import Skeleton from 'react-loading-skeleton';
-
+import Defoultimage from '../../../public/Images/dashboard/Rectangle 32 (2).png'
+import Image from 'next/image';
 const navigation = [
   { name: 'Dashboard', href: '/dashboard', current: true },
   { name: 'Problems', href: '/dashboard/Problems', current: false },
@@ -87,28 +88,26 @@ function DashboardTopNav() {
                     <h5 className="mr-4">{user.name}</h5>
                     <Menu as="div" className="relative ml-3">
                       <MenuButton className="relative flex max-w-xs items-center rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
-                        <img className="h-8 w-8 rounded-full" src={user.imageUrl || 'defaultImageUrl'} alt={user.name} />
+                        <Image className="h-10 w-10 rounded-full" src={Defoultimage} alt={user.name} />
                       </MenuButton>
                       <MenuItems
                         transition
-                        className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-black py-1 shadow-lg ring-1 ring-black ring-opacity-5 transition focus:outline-none"
-                      >
+                        className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-black py-1 shadow-lg ring-1 ring-black ring-opacity-5 transition focus:outline-none" >
                         <MenuItem>
-                          <a href="#" className="block px-4 py-2 text-sm text-gray-700">
+                          <a href="#" className="block px-4 py-2 text-sm text-white">
                             Your Profile
                           </a>
                         </MenuItem>
                         <MenuItem>
-                          <a href="#" className="block px-4 py-2 text-sm text-gray-700">
+                          <a  href="#" className="block px-4 py-2 text-sm text-white">
                             Settings
                           </a>
                         </MenuItem>
-                        <MenuItem>
+                        <MenuItem >
                           <button
                             onClick={handleSignOut}
-                            className="block w-full text-left px-4 py-2 text-sm text-gray-700"
-                          >
-                            Sign out
+                            className="block w-full text-left px-4 py-2 text-sm text-white" >
+                            Sign Out 
                           </button>
                         </MenuItem>
                       </MenuItems>

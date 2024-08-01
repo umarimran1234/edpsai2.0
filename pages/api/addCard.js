@@ -12,7 +12,7 @@ export default async function handler(req, res) {
     return;
   }
 
-  const { userId, ProjectName, DescribProblem, imgUrl, Contributers } = req.body;
+  const { userId, ProjectName, DescribProblem,  Contributers } = req.body;
 
   
 
@@ -30,7 +30,7 @@ export default async function handler(req, res) {
       userId,
       ProjectName,
       DescribProblem,
-      imgUrl,
+
       Contributers: [],
       invitation,
     });
@@ -39,10 +39,10 @@ export default async function handler(req, res) {
     res.status(201).json({ savData });
 
     const transport = nodemailer.createTransport({
-      service:'gmail',
+      host:process.env.HOST_SMTP,  
       auth: {
-        user: process.env.EMAIL_USER,
         pass: process.env.EMAIL_PASS,
+        user: process.env.EMAIL_USER,
       }
     });
 
@@ -51,7 +51,7 @@ export default async function handler(req, res) {
         from: process.env.EMAIL_USER,
         to: inv.email,
         subject: 'You have been added as a contributor',
-        text: `You have been added as a contributor to the project: ${ProjectName}. Click the following link to accept: ${process.env.APP_URL}/accept-invitation/${savData._id}/token/${inv.token}`,
+        text: `You have been added as a contributor to the project: ${ProjectName}. Click the following link to accept: ${process.env.APP_URL}/acceptinvitation/${savData._id}/token/${inv.token}`,
       };
 
       transport.sendMail(mailOptions, (error, info) => {

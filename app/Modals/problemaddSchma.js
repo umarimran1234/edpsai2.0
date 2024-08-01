@@ -4,7 +4,7 @@ const CardSchema = new mongoose.Schema({
     userId:{type: mongoose.Schema.Types.ObjectId , required:true},
     ProjectName:{ type: String , required:true},
     DescribProblem:{type:String, required:true},
-    imgUrl:{type:String},
+   
     Contributers:[{type:mongoose.Schema.Types.ObjectId, ref:'User'}],
     invitationToken:[
         {

@@ -14,7 +14,7 @@ const FirstSection = () => {
   const [names, setNames] = useState('');
   const [description, setDescription] = useState('');
   const [cardId, setCardId] = useState(null);
-
+  const [apiResponse , setApiResponse] = useState('')
   useEffect(() => {
     if (router.isReady) {
       const cardId = serachprams.get('cardId')
@@ -37,7 +37,9 @@ const FirstSection = () => {
 
 const getResponseFromgpt = async (description) =>{
   try{
-    const response = await axios.post('/openai' , {description});
+    const response = await axios.post('/api/openai' , {description});
+    console.log('OpenAI Response :' , response.data)
+    setApiResponse(response.data)
   } catch(error){
  console.error('Error fetching data from OpenAI:', error);
   }
@@ -54,7 +56,7 @@ const getResponseFromgpt = async (description) =>{
         names,
         description
       });
-      router.push(`/steps/unseratanding/fishboneAnlysis?cardId=${cardId}`);
+      router.push(`/unseratanding/Flowchart?cardId=${cardId}`);
     } catch (error) {
       console.error('Error saving progress:', error);
     }

@@ -6,6 +6,7 @@ import ButtonSection from './(components)/Bottom'
 export default function Problelayout({ children }) {
   return (
  <>
+
  <div className="">
 
  <Topnav/>
@@ -22,6 +23,7 @@ export default function Problelayout({ children }) {
        </main>
 
   </div>
+
  </>
 
 )

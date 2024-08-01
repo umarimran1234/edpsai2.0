@@ -4,15 +4,19 @@ import { createContext, useContext, useState, useEffect } from 'react';
 const ThemeContext = createContext();
 
 export const ThemeProvider = ({ children }) => {
-const [theme, setTheme] = useState(() => {
-    // Check localStorage for the theme; if not found, default to 'light'
-    const savedTheme = localStorage.getItem('theme');
-    return savedTheme ? savedTheme : 'light';
+  const [theme, setTheme] = useState(() => {
+    if (typeof window !== 'undefined') {
+      const savedTheme = localStorage.getItem('theme');
+      return savedTheme ? savedTheme : 'light';
+    }
+    return 'light';
   });
 
   useEffect(() => {
-    document.body.setAttribute('data-theme', theme);
-    localStorage.setItem('theme', theme);
+    if (typeof window !== 'undefined') {
+      document.body.setAttribute('data-theme', theme);
+      localStorage.setItem('theme', theme);
+    }
   }, [theme]);
 
   const toggleTheme = () => {

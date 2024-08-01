@@ -11,7 +11,7 @@ const ThemeSwitcher = () => {
 
 
   <button onClick={toggleTheme}> 
-    { theme === 'light' ? <SunIcon /> : <MoonIcon />   }  
+    { theme === 'light' ? <SunIcon fontSize={10} /> : <MoonIcon />   }  
     </button>  
  
    

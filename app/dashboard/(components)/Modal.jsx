@@ -43,7 +43,6 @@ const Modal = () => {
         userId: userid,
         ProjectName: formData.name,
         DescribProblem: formData.description,
-        imgUrl: image,
         Contributers: contributorinarray
       });
 
