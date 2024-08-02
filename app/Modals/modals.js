@@ -14,7 +14,7 @@ const UserSchema = new mongoose.Schema({
     password:{
      type:String,
      required:[true , 'please enter password'],
-     minlength:[8, 'password must be minimum 8 correcters']
+     minlength:[8, 'password must be minimum 8 correctors']
     }
 
 } , {
