@@ -22,7 +22,7 @@ const saveProgress = async (cardId, nodes, edges) => {
 
 const loadProgress = async (cardId) => {
   try {
-    const response = await axios.get('/api/save-progress', {
+    const response = await axios.get('/api/SaveProgress', {
       params: { cardId },
     });
     return response.data;

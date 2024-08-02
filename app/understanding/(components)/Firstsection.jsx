@@ -19,6 +19,7 @@ const FirstSection = () => {
     if (router.isReady) {
       const cardId = serachprams.get('cardId')
       setCardId(cardId);
+      console.log('this is card ' + cardId);
       fetchCardData(cardId);
     }
   }, [router.isReady, serachprams]);

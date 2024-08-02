@@ -6,7 +6,7 @@ export default async function handler(req, res) {
 
     try {
       const response = await axios.post(
-        'https://api.openai.com/v1/engines/davinci-codex/completions',
+        'https://us-central1-chatbot-b81d7.cloudfunctions.net/getOpenAIResponse',
         {
           prompt: description,
           max_tokens: 150,
@@ -14,7 +14,7 @@ export default async function handler(req, res) {
         },
         {
           headers: {
-            'Authorization': `Bearer ${process.env.OPEN_AI}`
+            'Authorization': `Bearer AIzaSyD4hzjIzreeTCij_hPDaIqjJBGPv2Iaazs`
           }
         }
       );
