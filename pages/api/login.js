@@ -15,13 +15,13 @@ export default async function handler(req, res) {
 
     // Find user by email
     const user = await userModal.findOne( {email} );
-  console.log('this is id ' , user._id);
+
     if (!user) {
       return res.status(404).json({ message: 'User not found' });
     }
 
     // Log the user object to check its structure
-    console.log('Retrieved user:', user);
+
 
     // Verify password
     const passwordMatch = await bcrypt.compare(password, user.password);

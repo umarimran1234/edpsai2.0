@@ -8,42 +8,40 @@ import { useRouter } from 'next/navigation';
 import { toast } from 'react-toastify';
 
 export default function Login() {
-const detect = async () =>{
-  if(!navigator.onLine){
-toast.error('connect brick')
-} else{
-toast.success('connection restore')
+  const detect = async () => {
+    if (!navigator.onLine) {
+      toast.error('connect brick')
+    } else {
+      toast.success('connection restore')
+    }
+    window.onload(detect())
+  }
 
-} 
-window.onload(detect())
-}
-  
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
- const [error , seterror] = useState('')
+  const [error, seterror] = useState('');
   const router = useRouter();
- 
+
   const handleSignIn = async (e) => {
     e.preventDefault();
 
     try {
-const response = await axios.post('/api/login', {email:email ,password:password});
-const {token , userId} = response.data;
-console.log('recived' , userId);
-document.cookie = `token${token}; Secure; SemSite=Strict`   
-localStorage.setItem('_id' , userId)
-localStorage.setItem( 'token', token)
-router.push('/dashboard')
-toast.success( 'thank for login')
-}
-     catch (e) {
-       console.error('Login error:', error);
+      const response = await axios.post('/api/login', { email: email, password: password });
+      const { token, userId } = response.data;
+      console.log('recived', userId);
+      document.cookie = `token${token}; Secure; SemSite=Strict`
+      localStorage.setItem('_id', userId)
+      localStorage.setItem('token', token)
+      router.push('/dashboard')
+      toast.success('thank for login')
+    }
+    catch (e) {
+      console.error('Login error:', error);
       seterror('Invalid credentials. Please try again.');
-router.push('/login')
-    toast.error('invalid credantials')
+      router.push('/login')
+      toast.error('invalid credantials')
     }
   };
-
 
   return (
     <>
@@ -110,7 +108,7 @@ router.push('/login')
                 </div>
 
                 <p className="text-center text-white text-xs mt-12">
-                  Don't have an account? Please <Link href={'/signup'}>Sign up</Link>
+                  Don&apos;t have an account? Please <Link href={'/signup'}>Sign up</Link>
                 </p>
               </div>
             </div>
