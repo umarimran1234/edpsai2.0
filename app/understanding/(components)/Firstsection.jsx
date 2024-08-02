@@ -1,28 +1,28 @@
 "use client";
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Suspense } from 'react';
 import { PlusIcon } from '@radix-ui/react-icons';
 import MappingSection from './Maping';
 import ButtonSection from './Bottom';
-import { useRouter , useSearchParams } from 'next/navigation';
-
+import { useRouter, useSearchParams } from 'next/navigation';
 import axios from 'axios';
 
-const FirstSection = () => {
+function Content() {
   const router = useRouter();
-  const serachprams = useSearchParams()
+  const searchParams = useSearchParams();
   const [leader, setLeader] = useState('');
   const [names, setNames] = useState('');
   const [description, setDescription] = useState('');
   const [cardId, setCardId] = useState(null);
-  const [apiResponse , setApiResponse] = useState('')
+  const [apiResponse, setApiResponse] = useState('');
+
   useEffect(() => {
     if (router.isReady) {
-      const cardId = serachprams.get('cardId')
+      const cardId = searchParams.get('cardId');
       setCardId(cardId);
       console.log('this is card ' + cardId);
       fetchCardData(cardId);
     }
-  }, [router.isReady, serachprams]);
+  }, [router.isReady, searchParams]);
 
   const fetchCardData = async (cardId) => {
     try {
@@ -36,20 +36,19 @@ const FirstSection = () => {
     }
   };
 
-const getResponseFromgpt = async (description) =>{
-  try{
-    const response = await axios.post('/api/openai' , {description});
-    console.log('OpenAI Response :' , response.data)
-    setApiResponse(response.data)
-  } catch(error){
- console.error('Error fetching data from OpenAI:', error);
-  }
-}
+  const getResponseFromgpt = async (description) => {
+    try {
+      const response = await axios.post('/api/openai', { description });
+      console.log('OpenAI Response:', response.data);
+      setApiResponse(response.data);
+    } catch (error) {
+      console.error('Error fetching data from OpenAI:', error);
+    }
+  };
 
   const handleSave = async () => {
     try {
-
-      await getResponseFromgpt(description)
+      await getResponseFromgpt(description);
       await axios.post('/api/SaveProgress', {
         cardId,
         currentStep: 1,
@@ -57,7 +56,7 @@ const getResponseFromgpt = async (description) =>{
         names,
         description
       });
-      router.push(`/unseratanding/Flowchart?cardId=${cardId}`);
+      router.push(`/understanding/Flowchart?cardId=${cardId}`);
     } catch (error) {
       console.error('Error saving progress:', error);
     }
@@ -130,8 +129,16 @@ const getResponseFromgpt = async (description) =>{
         </div>
         <MappingSection />
       </div>
-      <ButtonSection  back={"/dashboard"} hanldenext={handleSave}  />
+      <ButtonSection back={"/dashboard"} hanldenext={handleSave} />
     </div>
+  );
+}
+
+const FirstSection = () => {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <Content />
+    </Suspense>
   );
 };
 
