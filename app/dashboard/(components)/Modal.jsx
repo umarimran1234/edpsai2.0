@@ -3,6 +3,7 @@ import { Input } from '../../../components/ui/input';
 import { PlusIcon } from "@radix-ui/react-icons"
 import { useRouter } from 'next/navigation';
 import { XMarkIcon } from '@heroicons/react/24/outline';
+import Image from 'next/image';
 import axios from 'axios';
 
 const Modal = () => {
@@ -67,7 +68,7 @@ const Modal = () => {
   return (
     <div>
       <button onClick={openModal} style={{ background: '#888888', padding: '1rem', borderRadius: "1rem" }} className="mt-6">
-        <PlusIcon width={50} fontSize={100} />
+        <PlusIcon width={50} height={50} fontSize={2.0} />
       </button>
 
       {isOpen && (
@@ -87,35 +88,34 @@ const Modal = () => {
             </div>
             <form onSubmit={handleSubmit}>
               <div className="mb-4">
-                <div style={{ background: "#656060", borderRadius: '1rem' }} className="flex items-center overflow-hidden justify-center w-full">
-                  <label style={{ width: '6rem', maxHeight: '6rem' }}
-                    className="flex flex-col w-full h-26 group cursor-pointer"
-                  >
-                    <div className="flex flex-col items-center justify-center pt-7">
-                      {image ? (
-                        <img src={image} alt="Preview" className="h-full w-full object-cover" />
-                      ) : (
-                        <svg
-                          className="w-10 h-10 text-gray-400 group-hover:text-gray-600"
-                          fill="currentColor"
-                          xmlns="http://www.w3.org/2000/svg"
-                          viewBox="0 0 20 20"
-                        >
-                          <path d="M16.5 2a1.5 1.5 0 01.992 2.601l-5.004 5.004a1.5 1.5 0 01-1.49.375l-2.111-.702-5.149 5.148a1.5 1.5 0 11-2.12-2.12l5.147-5.15-.7-2.111a1.5 1.5 0 01.373-1.49L13.9 1.008A1.5 1.5 0 0116.5 2zm-1.005 4.993l-5.004-5.004-1.836 1.836 5.004 5.004 1.836-1.836z" />
-                        </svg>
-                      )}
-                      <p className="pt-1 text-sm tracking-wider text-gray-400 group-hover:text-gray-600">
-                        {image ? 'Change Image' : ''}
-                      </p>
-                    </div>
-                    <input
-                      type="file"
-                      className="opacity-0"
-                      accept="image/*"
-                      onChange={handleImageChange}
-                    />
-                  </label>
-                </div>
+               <div style={{ background: "#656060", borderRadius: '1rem' }} className="flex items-center overflow-hidden justify-center w-full">
+  <label  className="flex flex-col w-full h-full group cursor-pointer">
+    <div className="flex flex-col items-center justify-center w-full h-full">
+      {image ? (
+        <Image width={200} height={200} src={image} alt="Preview" className="" />
+      ) : (
+        <svg
+          className="w-10 h-10 text-gray-400 group-hover:text-gray-600"
+          fill="currentColor"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 20 20"
+        >
+          <path d="M16.5 2a1.5 1.5 0 01.992 2.601l-5.004 5.004a1.5 1.5 0 01-1.49.375l-2.111-.702-5.149 5.148a1.5 1.5 0 11-2.12-2.12l5.147-5.15-.7-2.111a1.5 1.5 0 01.373-1.49L13.9 1.008A1.5 1.5 0 0116.5 2zm-1.005 4.993l-5.004-5.004-1.836 1.836 5.004 5.004 1.836-1.836z" />
+        </svg>
+      )}
+      <p className="pt-1 text-sm tracking-wider text-gray-400 group-hover:text-gray-600">
+        
+      </p>
+    </div>
+    <input 
+      type="file"
+      className="opacity-0 absolute"
+      accept="image/*"
+      onChange={handleImageChange}
+    />
+  </label>
+</div>
+
               </div>
               <div className=" flex justify-center">
                 <label className="block text-white font-bold mr-6 text-sm font-bold ">
