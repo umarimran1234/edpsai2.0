@@ -22,7 +22,7 @@ export default function Signup() {
       const hashedPassword = await bcrypt.hash(password, 10);
 
       // Send hashed password in the POST request
-      const res = await axios.post('http://localhost:3000/api/user', {
+      const res = await axios.post('/api/user', {
         name: name,
         email: email,
         password: hashedPassword,
