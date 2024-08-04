@@ -118,7 +118,7 @@ const Modal = () => {
 
               </div>
               <div className=" flex justify-center">
-                <label className="block text-white font-bold mr-6 text-sm font-bold ">
+                <label className="block text-white font-bold mr-3 lg:mr-6 text-sm font-bold ">
                   ProjectName
                 </label>
                 <Input
