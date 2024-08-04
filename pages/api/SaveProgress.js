@@ -14,7 +14,7 @@ export default async function handler(req, res) {
           currentStep,
           leader,
           names,
-          description
+          description,
         },
         { new: true }
       );
